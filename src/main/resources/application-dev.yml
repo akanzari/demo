@@ -1,0 +1,28 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://172.29.234.26:27017/edgebb
+
+server:
+  port: 9097
+
+application:
+  # CORS is only enabled by default with the "dev" profile
+  cors:
+    # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
+    allowed-origins: '*'
+    # Enable CORS when running in GitHub Codespaces
+    allowed-origin-patterns: '*'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count,X-${spring.application.name}-alert,X-${spring.application.name}-error,X-${spring.application.name}-params'
+    allow-credentials: false
+    max-age: 1800
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: NTUzYzI4YzY2NzUwZWFlZGI3ZThiOWRkMmM1MGE1MDhiZTVlMjI4NTEzYmFlMmQ5ZDk5ZTg2YmVmOWUxNmFiOTkwN2M0ODIxNTA5N2U1OTU1NTEzNTFkZGY2ZGYzNjUyZGJjNDhhNDUxNWE3MWZkNWI2ODBhNWU4MTAxZWI2MmM=
+        # Token is valid 20 min
+        token-validity-in-seconds: 1296000
+        token-validity-in-seconds-for-remember-me: 1296000
